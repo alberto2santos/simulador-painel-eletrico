@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="keywords"    content="simulador, painel elétrico, motor elétrico, controle industrial, educação técnica" />
+  <meta name="author"      content="Alberto Luiz" />
+  <meta name="description" content="Simulador de painel elétrico para motor industrial, com controles de partida, indicadores LED e gráficos de consumo de corrente." />
+
+  <title>Simulador de Painel Elétrico — Alberto Luiz</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="src/styles/main.css" />
+</head>
+<body>
+
+  <!-- ===== HEADER ===== -->
+  <header class="panel-header">
+    <div class="header-brand">
+      <span class="header-icon">⚡</span>
+      <div class="header-text">
+        <h1 class="header-title">PAINEL DE CONTROLE INDUSTRIAL</h1>
+        <p class="header-subtitle">Simulador de Motor Elétrico · v1.0 · WEG W22 11kW</p>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="header-status" id="statusDisplay">
+        <span class="status-dot" id="statusDot"></span>
+        <span class="status-text" id="statusText">PARADO</span>
+      </div>
+      <div class="header-clock" id="headerClock">--:--:--</div>
+    </div>
+  </header>
+
+  <!-- ===== DASHBOARD ===== -->
+  <main class="panel-main">
+
+    <!-- ── LINHA 1: KPI Cards ── -->
+    <section class="kpi-bar" aria-label="Indicadores rápidos">
+
+      <div class="kpi-card">
+        <span class="kpi-icon">⚡</span>
+        <div class="kpi-info">
+          <span class="kpi-label">TENSÃO</span>
+          <span class="kpi-value" id="dataVoltage">380 V</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <span class="kpi-icon">〜</span>
+        <div class="kpi-info">
+          <span class="kpi-label">CORRENTE</span>
+          <span class="kpi-value" id="dataCurrent">0.0 A</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <span class="kpi-icon">◈</span>
+        <div class="kpi-info">
+          <span class="kpi-label">POTÊNCIA</span>
+          <span class="kpi-value" id="dataPower">0.0 kW</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <span class="kpi-icon">⏱</span>
+        <div class="kpi-info">
+          <span class="kpi-label">TEMPO OP.</span>
+          <span class="kpi-value" id="dataTimer">00:00</span>
+        </div>
+      </div>
+
+      <div class="kpi-card">
+        <span class="kpi-icon">◎</span>
+        <div class="kpi-info">
+          <span class="kpi-label">MODO</span>
+          <span class="kpi-value" id="dataMode">—</span>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ── LINHA 2: Painel principal ── -->
+    <div class="panel-grid">
+
+      <!-- COLUNA A: Controles -->
+      <aside class="panel-controls" aria-label="Controles do Motor">
+
+        <!-- LEDs -->
+        <div class="control-group">
+          <span class="group-label">INDICADORES</span>
+          <div class="led-panel">
+            <div class="led-item">
+              <div class="led led-green" id="ledGreen" aria-label="Motor em funcionamento"></div>
+              <span class="led-label">OPERANDO</span>
+            </div>
+            <div class="led-item">
+              <div class="led led-red active" id="ledRed" aria-label="Motor parado"></div>
+              <span class="led-label">PARADO</span>
+            </div>
+            <div class="led-item">
+              <div class="led led-yellow" id="ledYellow" aria-label="Em partida"></div>
+              <span class="led-label">PARTIDA</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Seletor de Modo -->
+        <div class="control-group">
+          <span class="group-label">MODO DE PARTIDA</span>
+          <div class="mode-selector">
+            <input type="radio" name="startMode" id="modeDirect" value="direct" checked />
+            <label for="modeDirect" class="mode-btn">
+              <span class="mode-icon">▶▶</span>
+              Direta
+            </label>
+            <input type="radio" name="startMode" id="modeStar" value="star-triangle" />
+            <label for="modeStar" class="mode-btn">
+              <span class="mode-icon">Y-△</span>
+              Estrela-Triângulo
+            </label>
+          </div>
+        </div>
+
+        <!-- Botões START / STOP -->
+        <div class="control-group">
+          <span class="group-label">COMANDOS</span>
+          <div class="button-panel">
+            <button
+              class="industrial-btn btn-start"
+              id="btnStart"
+              aria-label="Iniciar motor"
+              onclick="handleStart()"
+            >
+              <span class="btn-inner">
+                <span class="btn-symbol">▶</span>
+                <span class="btn-label">START</span>
+              </span>
+            </button>
+
+            <button
+              class="industrial-btn btn-stop"
+              id="btnStop"
+              aria-label="Parar motor"
+              onclick="handleStop()"
+              disabled
+            >
+              <span class="btn-inner">
+                <span class="btn-symbol">■</span>
+                <span class="btn-label">STOP</span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Botão E-STOP separado e destacado -->
+        <div class="estop-wrapper">
+          <span class="group-label">EMERGÊNCIA</span>
+          <button id="btn-estop" class="btn-estop" aria-label="Parada de emergência">
+            <span class="estop-ring">
+              <span class="estop-label">STOP</span>
+              <small class="estop-sub">EMERGÊNCIA</small>
+            </span>
+          </button>
+        </div>
+
+      </aside>
+
+      <!-- COLUNA B: Motor + Gráfico -->
+      <section class="panel-visualization" aria-label="Visualização do Motor">
+
+        <!-- Motor Visual -->
+        <div class="motor-display">
+          <span class="group-label">MOTOR — WEG W22 · 15 CV / 11 kW · 380V · 60Hz</span>
+          <div class="motor-wrapper">
+            <div class="motor-body" id="motorBody">
+              <img
+                src="assets/motor-icon.svg"
+                alt="Motor elétrico WEG W22"
+                class="motor-svg"
+                id="motorSvg"
+              />
+              <div class="motor-glow" id="motorGlow"></div>
+            </div>
+            <p class="motor-state-label" id="motorStateLabel">● PARADO</p>
+          </div>
+        </div>
+
+        <!-- Gráfico -->
+        <div class="chart-display">
+          <span class="group-label">CONSUMO DE CORRENTE (A) — TEMPO REAL</span>
+          <div class="chart-wrapper">
+            <canvas id="currentChart" aria-label="Gráfico de consumo de corrente"></canvas>
+          </div>
+          <div class="chart-legend">
+            <span class="legend-item legend-peak">● Pico de Partida</span>
+            <span class="legend-item legend-nominal">● Corrente Nominal</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- COLUNA C: Log de Eventos -->
+      <aside class="log-column" aria-label="Log de eventos">
+        <div class="log-panel">
+          <div class="log-header">
+            <span class="group-label">📋 LOG DE EVENTOS</span>
+            <button class="log-clear-btn" onclick="EventLogger.clear()">LIMPAR</button>
+          </div>
+          <ul id="event-log"></ul>
+        </div>
+      </aside>
+
+    </div>
+    <!-- fim .panel-grid -->
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="panel-footer">
+    <span>Simulador Educacional — Não representa um sistema real de controle</span>
+    <span>
+      Desenvolvido por <strong>Alberto Luiz</strong> ·
+      <a href="https://github.com/alberto2santos" target="_blank" rel="noopener">GitHub</a> ·
+      2025
+    </span>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script src="src/utils/simulator.js"></script>
+  <script src="src/utils/fault-simulator.js"></script>
+  <script src="src/utils/event-logger.js"></script>
+  <script src="src/js/chart-controller.js"></script>
+  <script src="src/js/motor-controller.js"></script>
+  <script src="src/js/main.js"></script>
+
+</body>
+</html>

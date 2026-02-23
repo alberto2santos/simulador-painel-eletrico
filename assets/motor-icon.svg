@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradiente do corpo -->
+    <linearGradient id="bodyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#2e4a6a"/>
+      <stop offset="100%" stop-color="#1a2a3a"/>
+    </linearGradient>
+    <!-- Gradiente do eixo -->
+    <linearGradient id="shaftGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%"   stop-color="#5a8ab0"/>
+      <stop offset="100%" stop-color="#2a4a6a"/>
+    </linearGradient>
+    <!-- Glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- === CORPO PRINCIPAL === -->
+  <rect x="40" y="55" width="160" height="95" rx="14"
+        fill="url(#bodyGrad)" stroke="#4a9eff" stroke-width="2"/>
+
+  <!-- Frisos de ventilação -->
+  <line x1="55" y1="65" x2="55" y2="140" stroke="#3a6a9a" stroke-width="1" opacity="0.5"/>
+  <line x1="68" y1="65" x2="68" y2="140" stroke="#3a6a9a" stroke-width="1" opacity="0.5"/>
+  <line x1="81" y1="65" x2="81" y2="140" stroke="#3a6a9a" stroke-width="1" opacity="0.5"/>
+
+  <!-- === CAIXA DE TERMINAIS (topo) === -->
+  <rect x="90" y="36" width="52" height="22" rx="5"
+        fill="#1a2e42" stroke="#4a9eff" stroke-width="1.5"/>
+  <circle cx="103" cy="47" r="4" fill="#4a9eff" opacity="0.8"/>
+  <circle cx="116" cy="47" r="4" fill="#4a9eff" opacity="0.8"/>
+  <circle cx="129" cy="47" r="4" fill="#4a9eff" opacity="0.8"/>
+
+  <!-- === ROTOR CENTRAL (grupo animável via JS) === -->
+  <g id="rotor" transform="translate(140, 102)">
+    <!-- Anel externo -->
+    <circle r="36" fill="#1a2a3a" stroke="#4a9eff" stroke-width="2" opacity="0.9"/>
+    <!-- Pás principais -->
+    <line x1="0"   y1="-36" x2="0"   y2="36"  stroke="#4a9eff" stroke-width="3" stroke-linecap="round"/>
+    <line x1="-36" y1="0"   x2="36"  y2="0"   stroke="#4a9eff" stroke-width="3" stroke-linecap="round"/>
+    <!-- Pás diagonais -->
+    <line x1="-25" y1="-25" x2="25"  y2="25"  stroke="#4a9eff" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    <line x1="25"  y1="-25" x2="-25" y2="25"  stroke="#4a9eff" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+    <!-- Anel interno -->
+    <circle r="14" fill="#1e3a5a" stroke="#4a9eff" stroke-width="1.5"/>
+    <!-- Hub central -->
+    <circle r="6"  fill="#4a9eff" filter="url(#glow)"/>
+  </g>
+
+  <!-- === EIXO DE SAÍDA === -->
+  <rect x="200" y="95" width="42" height="14" rx="4"
+        fill="url(#shaftGrad)" stroke="#4a9eff" stroke-width="1"/>
+  <!-- Detalhe do acoplamento -->
+  <rect x="238" y="98" width="6" height="8" rx="2" fill="#2a4a6a" stroke="#4a9eff" stroke-width="0.8"/>
+
+  <!-- === PARAFUSOS NOS 4 CANTOS === -->
+  <circle cx="54"  cy="68"  r="5" fill="#1a2a3a" stroke="#4a9eff" stroke-width="1.2"/>
+  <line   x1="51"  y1="68"  x2="57" y2="68"  stroke="#4a9eff" stroke-width="0.8"/>
+  <line   x1="54"  y1="65"  x2="54" y2="71"  stroke="#4a9eff" stroke-width="0.8"/>
+
+  <circle cx="54"  cy="137" r="5" fill="#1a2a3a" stroke="#4a9eff" stroke-width="1.2"/>
+  <line   x1="51"  y1="137" x2="57" y2="137" stroke="#4a9eff" stroke-width="0.8"/>
+  <line   x1="54"  y1="134" x2="54" y2="140" stroke="#4a9eff" stroke-width="0.8"/>
+
+  <circle cx="186" cy="68"  r="5" fill="#1a2a3a" stroke="#4a9eff" stroke-width="1.2"/>
+  <line   x1="183" y1="68"  x2="189" y2="68"  stroke="#4a9eff" stroke-width="0.8"/>
+  <line   x1="186" y1="65"  x2="186" y2="71"  stroke="#4a9eff" stroke-width="0.8"/>
+
+  <circle cx="186" cy="137" r="5" fill="#1a2a3a" stroke="#4a9eff" stroke-width="1.2"/>
+  <line   x1="183" y1="137" x2="189" y2="137" stroke="#4a9eff" stroke-width="0.8"/>
+  <line   x1="186" y1="134" x2="186" y2="140" stroke="#4a9eff" stroke-width="0.8"/>
+
+  <!-- === PLACA DO FABRICANTE === -->
+  <rect x="85" y="118" width="70" height="24" rx="4"
+        fill="#0f1e2e" stroke="#2a5a8a" stroke-width="1"/>
+  <text x="120" y="128" text-anchor="middle"
+        fill="#4a9eff" font-size="7" font-family="Share Tech Mono, monospace"
+        font-weight="bold">WEG W22</text>
+  <text x="120" y="138" text-anchor="middle"
+        fill="#3a7aaa" font-size="6" font-family="Share Tech Mono, monospace">11kW · 380V · 60Hz</text>
+</svg>
