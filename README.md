@@ -171,14 +171,6 @@ start index.html
 
 ---
 
-## 🌐 Demo Online
-
-O projeto está publicado via **GitHub Pages** e pode ser acessado sem instalação:
-
-👉 **[alberto2santos.github.io/simulador-painel-eletrico](https://alberto2santos.github.io/simulador-painel-eletrico)**
-
----
-
 ## 👤 Autor
 
 [![GitHub](https://img.shields.io/badge/GitHub-alberto2santos-181717?style=flat-square&logo=github)](https://github.com/alberto2santos)
