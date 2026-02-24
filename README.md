@@ -8,7 +8,6 @@
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](https://developer.mozilla.org/pt-BR/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 [![Chart.js](https://img.shields.io/badge/Chart.js-FF6384?style=flat-square&logo=chartdotjs&logoColor=white)](https://www.chartjs.org/)
-[![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-222222?style=flat-square&logo=github)](https://alberto2santos.github.io)
 [![Licença MIT](https://img.shields.io/badge/Licença-MIT-00c853?style=flat-square)](./LICENSE)
 
 <br/>
@@ -17,7 +16,6 @@
 
 <br/>
 
-[🚀 Ver Demo Online](https://alberto2santos.github.io/simulador-painel-eletrico) &nbsp;·&nbsp;
 [🐛 Reportar Bug](https://github.com/alberto2santos/simulador-painel-eletrico/issues) &nbsp;·&nbsp;
 [💡 Sugerir Funcionalidade](https://github.com/alberto2santos/simulador-painel-eletrico/issues)
 
@@ -91,7 +89,8 @@ Desenvolvido como **projeto de portfólio** para demonstrar domínio em:
 | CSS3 | — | Animações, tema industrial, responsividade |
 | JavaScript | ES6+ | Lógica de simulação e controle de estado |
 | Chart.js | 4.4.0 | Gráfico dinâmico de corrente |
-| Google Fonts | — | Orbitron + Share Tech Mono |
+| Orbitron + Share Tech Mono | — | Fontes locais — sem dependência de rede |
+| SVG inline | — | Ícones vetoriais com suporte a `currentColor` |
 
 > **Zero dependências de build.** Nenhum bundler, nenhum framework. Abre direto no browser.
 
@@ -103,6 +102,7 @@ Desenvolvido como **projeto de portfólio** para demonstrar domínio em:
 simulador-painel-eletrico/
 │
 ├── index.html                      # Estrutura principal e marcação semântica
+├── favicon.svg                     # Ícone do projeto (raio elétrico SVG)
 │
 ├── src/
 │   ├── styles/
@@ -119,8 +119,27 @@ simulador-painel-eletrico/
 │       └── event-logger.js         # Registro e exibição do log de eventos
 │
 └── assets/
+    ├── fonts/
+    │   ├── Orbitron-Regular.ttf
+    │   ├── Orbitron-Medium.ttf
+    │   ├── Orbitron-SemiBold.ttf
+    │   ├── Orbitron-Bold.ttf
+    │   ├── Orbitron-ExtraBold.ttf
+    │   ├── Orbitron-Black.ttf
+    │   └── ShareTechMono-Regular.ttf
+    ├── icons/
+    │   ├── bolt.svg
+    │   ├── wave.svg
+    │   ├── power.svg
+    │   ├── stopwatch.svg
+    │   ├── gear.svg
+    │   ├── forward.svg
+    │   ├── play.svg
+    │   ├── stop.svg
+    │   ├── circle.svg
+    │   └── clipboard.svg
     ├── motor-icon.svg              # Ícone SVG do motor WEG W22
-    └── screenshot.png              # Preview para o README
+    └── screenshot.png             # Preview para o README
 ```
 
 ---
@@ -182,4 +201,3 @@ Veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
 Feito por **Alberto Luiz**
 
 </div>
-

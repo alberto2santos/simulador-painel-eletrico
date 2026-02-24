@@ -4,6 +4,64 @@
    Autor: Alberto Luiz
    ============================================= */
 
+/* ── Orbitron ──────────────────────────────────────────── */
+@font-face {
+  font-family: 'Orbitron';
+  src: url('../../assets/fonts/Orbitron-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Orbitron';
+  src: url('../../assets/fonts/Orbitron-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Orbitron';
+  src: url('../../assets/fonts/Orbitron-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Orbitron';
+  src: url('../../assets/fonts/Orbitron-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Orbitron';
+  src: url('../../assets/fonts/Orbitron-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Orbitron';
+  src: url('../../assets/fonts/Orbitron-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ── Share Tech Mono ───────────────────────────────────── */
+@font-face {
+  font-family: 'Share Tech Mono';
+  src: url('../../assets/fonts/ShareTechMono-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ---- Reset & Base ---- */
 *, *::before, *::after {
   box-sizing: border-box;
@@ -68,9 +126,16 @@ html, body {
   gap: 14px;
 }
 
+/* ── Ícone do header agora é SVG ── */
 .header-icon {
-  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  color: var(--accent-blue);
   filter: drop-shadow(0 0 8px var(--accent-blue));
+  flex-shrink: 0;
 }
 
 .header-text {
@@ -190,8 +255,14 @@ html, body {
   background: var(--bg-card-hover);
 }
 
+/* ── KPI icon agora é SVG ── */
 .kpi-icon {
-  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  color: var(--accent-blue);
   opacity: 0.7;
   flex-shrink: 0;
 }
@@ -239,7 +310,9 @@ html, body {
    SHARED: GROUP LABEL + CONTROL GROUP
    ============================================= */
 .group-label {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 6px;
   font-family: var(--font-display);
   font-size: 0.58rem;
   font-weight: 700;
@@ -249,6 +322,12 @@ html, body {
   padding-bottom: 8px;
   margin-bottom: 12px;
   border-bottom: 1px solid var(--border-color);
+}
+
+/* SVG dentro do group-label (ícone da prancheta) */
+.group-label svg {
+  flex-shrink: 0;
+  color: var(--accent-blue);
 }
 
 .control-group {
@@ -375,8 +454,16 @@ html, body {
   color: var(--text-primary);
 }
 
+/* ── Mode icon agora é SVG ── */
 .mode-icon {
-  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: currentColor;
+  /* mantém suporte ao Y-△ texto também */
+  font-size: 0.9rem;
   line-height: 1;
 }
 
@@ -458,11 +545,13 @@ input[type="radio"]:checked + .mode-btn {
   gap: 4px;
 }
 
+/* ── btn-symbol agora é SVG ── */
 .btn-symbol {
-  font-size: 1.5rem;
-  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   color: #fff;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.5));
 }
 
 .btn-label {
@@ -611,13 +700,22 @@ input[type="radio"]:checked + .mode-btn {
   opacity: 1;
 }
 
+/* ── motor-state-label usa SVG inline ── */
 .motor-state-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   font-family: var(--font-display);
   font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.2em;
   color: var(--accent-red);
   transition: var(--transition);
+}
+
+.motor-state-label svg {
+  flex-shrink: 0;
+  color: currentColor;
 }
 
 .motor-state-label.running {
@@ -662,10 +760,18 @@ input[type="radio"]:checked + .mode-btn {
   justify-content: center;
 }
 
+/* ── legend-item usa SVG inline ── */
 .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
   font-size: 0.62rem;
   color: var(--text-secondary);
   letter-spacing: 0.05em;
+}
+
+.legend-item svg {
+  flex-shrink: 0;
 }
 
 .legend-peak    { color: #ff9800; }
@@ -960,7 +1066,6 @@ input[type="radio"]:checked + .mode-btn {
     height: 76px;
   }
 
-  .btn-symbol { font-size: 1.3rem; }
   .btn-label  { font-size: 0.55rem; }
 
   /* E-STOP menor */
@@ -993,7 +1098,6 @@ input[type="radio"]:checked + .mode-btn {
     padding: 10px 10px;
   }
 
-  .kpi-icon  { font-size: 1.1rem; }
   .kpi-value { font-size: 0.85rem; }
 
   /* Grid coluna única */
@@ -1073,8 +1177,6 @@ input[type="radio"]:checked + .mode-btn {
     width: 90px;
     height: 90px;
   }
-
-  .btn-symbol { font-size: 1.5rem; }
 
   .btn-estop {
     width: 86px;

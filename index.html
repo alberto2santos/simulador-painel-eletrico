@@ -10,8 +10,7 @@
 
   <title>Simulador de Painel Elétrico — Alberto Luiz</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
 
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
   <link rel="stylesheet" href="src/styles/main.css" />
@@ -21,7 +20,14 @@
   <!-- ===== HEADER ===== -->
   <header class="panel-header">
     <div class="header-brand">
-      <span class="header-icon">⚡</span>
+
+      <!-- bolt.svg -->
+      <span class="header-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <polygon points="13 2 4.5 13.5 11 13.5 11 22 19.5 10.5 13 10.5"/>
+        </svg>
+      </span>
+
       <div class="header-text">
         <h1 class="header-title">PAINEL DE CONTROLE INDUSTRIAL</h1>
         <p class="header-subtitle">Simulador de Motor Elétrico · v1.0 · WEG W22 11kW</p>
@@ -42,40 +48,87 @@
     <!-- ── LINHA 1: KPI Cards ── -->
     <section class="kpi-bar" aria-label="Indicadores rápidos">
 
+      <!-- TENSÃO — bolt.svg -->
       <div class="kpi-card">
-        <span class="kpi-icon">⚡</span>
+        <span class="kpi-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <polygon points="13 2 4.5 13.5 11 13.5 11 22 19.5 10.5 13 10.5"/>
+          </svg>
+        </span>
         <div class="kpi-info">
           <span class="kpi-label">TENSÃO</span>
           <span class="kpi-value" id="dataVoltage">380 V</span>
         </div>
       </div>
 
+      <!-- CORRENTE — wave.svg -->
       <div class="kpi-card">
-        <span class="kpi-icon">〜</span>
+        <span class="kpi-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M2 12 C4 6, 8 6, 10 12 S16 18, 18 12 S22 6, 24 12"/>
+          </svg>
+        </span>
         <div class="kpi-info">
           <span class="kpi-label">CORRENTE</span>
           <span class="kpi-value" id="dataCurrent">0.0 A</span>
         </div>
       </div>
 
+      <!-- POTÊNCIA — power.svg -->
       <div class="kpi-card">
-        <span class="kpi-icon">◈</span>
+        <span class="kpi-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <polygon points="13 8 9 13 12 13 11 16 15 11 12 11"
+                     fill="currentColor" stroke="none"/>
+          </svg>
+        </span>
         <div class="kpi-info">
           <span class="kpi-label">POTÊNCIA</span>
           <span class="kpi-value" id="dataPower">0.0 kW</span>
         </div>
       </div>
 
+      <!-- TEMPO OP. — stopwatch.svg -->
       <div class="kpi-card">
-        <span class="kpi-icon">⏱</span>
+        <span class="kpi-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="13" r="8"/>
+            <path d="M12 9v4l3 2"/>
+            <path d="M10 3h4"/>
+            <path d="M12 3v2"/>
+          </svg>
+        </span>
         <div class="kpi-info">
           <span class="kpi-label">TEMPO OP.</span>
           <span class="kpi-value" id="dataTimer">00:00</span>
         </div>
       </div>
 
+      <!-- MODO — gear.svg -->
       <div class="kpi-card">
-        <span class="kpi-icon">◎</span>
+        <span class="kpi-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06
+                     a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09
+                     A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83
+                     l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09
+                     A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83
+                     l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09
+                     a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83
+                     l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09
+                     a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+        </span>
         <div class="kpi-info">
           <span class="kpi-label">MODO</span>
           <span class="kpi-value" id="dataMode">—</span>
@@ -113,16 +166,25 @@
         <div class="control-group">
           <span class="group-label">MODO DE PARTIDA</span>
           <div class="mode-selector">
+
             <input type="radio" name="startMode" id="modeDirect" value="direct" checked />
             <label for="modeDirect" class="mode-btn">
-              <span class="mode-icon">▶▶</span>
+              <!-- forward.svg -->
+              <span class="mode-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <polygon points="5 5 12 12 5 19"/>
+                  <polygon points="13 5 20 12 13 19"/>
+                </svg>
+              </span>
               Direta
             </label>
+
             <input type="radio" name="startMode" id="modeStar" value="star-triangle" />
             <label for="modeStar" class="mode-btn">
               <span class="mode-icon">Y-△</span>
               Estrela-Triângulo
             </label>
+
           </div>
         </div>
 
@@ -130,6 +192,7 @@
         <div class="control-group">
           <span class="group-label">COMANDOS</span>
           <div class="button-panel">
+
             <button
               class="industrial-btn btn-start"
               id="btnStart"
@@ -137,7 +200,12 @@
               onclick="handleStart()"
             >
               <span class="btn-inner">
-                <span class="btn-symbol">▶</span>
+                <!-- play.svg -->
+                <span class="btn-symbol">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <polygon points="5 3 19 12 5 21"/>
+                  </svg>
+                </span>
                 <span class="btn-label">START</span>
               </span>
             </button>
@@ -150,14 +218,20 @@
               disabled
             >
               <span class="btn-inner">
-                <span class="btn-symbol">■</span>
+                <!-- stop.svg -->
+                <span class="btn-symbol">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <rect x="3" y="3" width="18" height="18" rx="2"/>
+                  </svg>
+                </span>
                 <span class="btn-label">STOP</span>
               </span>
             </button>
+
           </div>
         </div>
 
-        <!-- Botão E-STOP separado e destacado -->
+        <!-- Botão E-STOP -->
         <div class="estop-wrapper">
           <span class="group-label">EMERGÊNCIA</span>
           <button id="btn-estop" class="btn-estop" aria-label="Parada de emergência">
@@ -186,7 +260,14 @@
               />
               <div class="motor-glow" id="motorGlow"></div>
             </div>
-            <p class="motor-state-label" id="motorStateLabel">● PARADO</p>
+
+            <!-- circle.svg inline -->
+            <p class="motor-state-label" id="motorStateLabel">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+              PARADO
+            </p>
           </div>
         </div>
 
@@ -197,8 +278,23 @@
             <canvas id="currentChart" aria-label="Gráfico de consumo de corrente"></canvas>
           </div>
           <div class="chart-legend">
-            <span class="legend-item legend-peak">● Pico de Partida</span>
-            <span class="legend-item legend-nominal">● Corrente Nominal</span>
+
+            <!-- circle.svg inline — Pico -->
+            <span class="legend-item legend-peak">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+              Pico de Partida
+            </span>
+
+            <!-- circle.svg inline — Nominal -->
+            <span class="legend-item legend-nominal">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+              </svg>
+              Corrente Nominal
+            </span>
+
           </div>
         </div>
 
@@ -208,7 +304,20 @@
       <aside class="log-column" aria-label="Log de eventos">
         <div class="log-panel">
           <div class="log-header">
-            <span class="group-label">📋 LOG DE EVENTOS</span>
+
+            <!-- clipboard.svg inline -->
+            <span class="group-label">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="2"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="8" y="2" width="8" height="4" rx="1"/>
+                <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+                <line x1="9" y1="12" x2="15" y2="12"/>
+                <line x1="9" y1="16" x2="13" y2="16"/>
+              </svg>
+              LOG DE EVENTOS
+            </span>
+
             <button class="log-clear-btn" onclick="EventLogger.clear()">LIMPAR</button>
           </div>
           <ul id="event-log"></ul>
@@ -226,7 +335,7 @@
     <span>
       Desenvolvido por <strong>Alberto Luiz</strong> ·
       <a href="https://github.com/alberto2santos" target="_blank" rel="noopener">GitHub</a> ·
-      2025
+      2026
     </span>
   </footer>
 
