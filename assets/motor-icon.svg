@@ -11,7 +11,7 @@
       <stop offset="0%"   stop-color="#5a8ab0"/>
       <stop offset="100%" stop-color="#2a4a6a"/>
     </linearGradient>
-    <!-- Glow filter -->
+    <!-- Filtro de brilho -->
     <filter id="glow">
       <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
       <feMerge>
@@ -49,7 +49,7 @@
     <line x1="25"  y1="-25" x2="-25" y2="25"  stroke="#4a9eff" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
     <!-- Anel interno -->
     <circle r="14" fill="#1e3a5a" stroke="#4a9eff" stroke-width="1.5"/>
-    <!-- Hub central -->
+    <!-- Cubo central -->
     <circle r="6"  fill="#4a9eff" filter="url(#glow)"/>
   </g>
 
